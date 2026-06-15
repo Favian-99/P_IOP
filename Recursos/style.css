@@ -1,0 +1,579 @@
+ /* ========================================================
+   VARIABLES DE COLOR (TEMA CAFE / ESPRESSO)
+======================================================== */
+:root {
+  --bg: #1e1814;          /* Cafe oscuro profundo (Fondo) */
+  --surface: #2d241e;     /* Moca (Paneles y tablas) */
+  --card: #3d322b;        /* Moca claro (Tarjetas y pestañas) */
+  --border: #4a3b32;      /* Cacao (Lineas divisorias) */
+  
+  --accent: #d4a373;      /* Caramelo (Botones y resaltados) */
+  --accent2: #8b5e34;     /* Avellana (Barras normales del Gantt) */
+  --critical: #d95d39;    /* Terracota/Ladrillo (Ruta critica y errores) */
+  --warn: #e09f3e;        /* Mostaza (Avisos) */
+  
+  --text: #ebd5c1;        /* Crema (Letras principales) */
+  --muted: #a38d7d;       /* Cafe con leche (Letras secundarias) */
+  
+  --font: 'Syne', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+/* ========================================================
+   CONFIGURACION GENERAL
+======================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========================================================
+   ENCABEZADO Y ESTRUCTURA PRINCIPAL
+======================================================== */
+.header {
+  padding: 2rem 2.5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: var(--bg);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 span {
+  color: var(--accent);
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  min-height: calc(100vh - 80px);
+}
+
+.panel {
+  border-right: 1px solid var(--border);
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 80px);
+}
+
+.content {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 80px);
+}
+
+/* ========================================================
+   ETIQUETAS Y TABLA DE ENTRADA DE DATOS
+======================================================== */
+.section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+#activity-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+#activity-table th {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+#activity-table td {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+}
+
+#activity-table td input {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  width: 100%;
+  outline: none;
+  padding: 2px 4px;
+}
+
+#activity-table td input:focus {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.act-name-input {
+  width: 50px !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent) !important;
+}
+
+/* ========================================================
+   BOTONES
+======================================================== */
+.btn {
+  cursor: pointer;
+  border: none;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.15s;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: #eabf9f; /* Caramelo mas claro al pasar el raton */
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.btn-ghost:hover {
+  border-color: var(--muted);
+  color: var(--text);
+}
+
+.btn-danger {
+  background: transparent;
+  border: none;
+  color: var(--critical);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.btn-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+#calc-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+}
+
+/* ========================================================
+   CARGADOR (PUNTITOS) Y MENSAJES DE ERROR
+======================================================== */
+#loader {
+  display: none;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.dots span {
+  animation: blink 1.4s infinite both;
+}
+
+.dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+
+#error-box {
+  display: none;
+  background: rgba(217, 93, 57, 0.1);
+  border: 1px solid var(--critical);
+  border-radius: 10px;
+  padding: 1rem;
+  color: var(--critical);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* ========================================================
+   PESTAÑAS DE NAVEGACION
+======================================================== */
+#results {
+  display: none;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1.5rem;
+  background: var(--surface);
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  transition: all 0.15s;
+}
+
+.tab.active {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ========================================================
+   METRICAS Y RUTA CRITICA
+======================================================== */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.metric {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.metric-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+
+.metric-value {
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.metric-value.accent {
+  color: var(--accent);
+}
+
+.metric-value.critical {
+  color: var(--critical);
+}
+
+.critical-path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.cp-badge {
+  background: var(--surface);
+  border: 1px solid var(--critical);
+  color: var(--critical);
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.cp-arrow {
+  color: var(--muted);
+  align-self: center;
+  font-size: 0.8rem;
+}
+
+/* ========================================================
+   TABLA DE RESULTADOS
+======================================================== */
+table.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+
+table.results-table th {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+
+table.results-table td {
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.75rem;
+  text-align: center;
+}
+
+table.results-table tr.critical td {
+  background: rgba(217, 93, 57, 0.08); /* Fondo rojizo/cafe suave para peligrosos */
+}
+
+table.results-table tr.critical td:first-child {
+  color: var(--critical);
+  font-weight: 600;
+}
+
+.asterisk {
+  color: var(--critical);
+  font-weight: 700;
+}
+
+/* ========================================================
+   EXPLICACION PASO A PASO
+======================================================== */
+.step-section {
+  margin-bottom: 1.5rem;
+}
+
+.step-section h3 {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-family: var(--mono);
+}
+
+.step-entry {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.step-entry .formula {
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+.step-entry .result {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.step-entry.critical-step {
+  border-color: var(--critical);
+  background: rgba(217, 93, 57, 0.05);
+}
+
+/* ========================================================
+   DIAGRAMAS Y GANTT
+======================================================== */
+#network-container {
+  width: 100%;
+  height: 520px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#gantt-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.gantt-wrap {
+  min-width: 600px;
+}
+
+.gantt-header {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.gantt-act-col {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.gantt-timeline {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.time-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-align: center;
+  font-family: var(--mono);
+}
+
+.gantt-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  height: 28px;
+}
+
+.gantt-name {
+  width: 120px;
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-family: var(--mono);
+  color: var(--muted);
+}
+
+.gantt-track {
+  flex: 1;
+  position: relative;
+  height: 20px;
+}
+
+.gantt-bar {
+  position: absolute;
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  font-family: var(--mono);
+  transition: all 0.3s;
+}
+
+.gantt-bar.normal {
+  background: #4a3b32; /* Tono cacao para tareas normales */
+  border: 1px solid var(--accent2);
+  color: var(--text);
+}
+
+.gantt-bar.critical {
+  background: #5c2c22; /* Terracota oscuro para tareas criticas */
+  border: 1px solid var(--critical);
+  color: var(--critical);
+}
+
+.gantt-grid-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ========================================================
+   ADAPTACION PARA CELULARES Y PANTALLAS PEQUEÑAS
+======================================================== */
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+  .panel {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: none;
+  }
+  .content {
+    max-height: none;
+  }
+}
